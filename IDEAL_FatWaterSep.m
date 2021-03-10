@@ -74,3 +74,22 @@ function [water_s_norm fat_s_norm res_psi_norm] = ...
     res_ec(p,:) = raw-estim(p,:);
     res_psi_norm(p,:) = squeeze(norm(res_ec(p,:),2));
     end
+    
+%% Normalise data
+    res_psi_norm = res_psi_temp./max(res_psi_temp);
+    water_s_norm = water_s_temp./max(water_s_temp);
+    fat_s_norm = fat_s_temp./max(fat_s_temp);
+
+%% Visualise data
+figure()
+plot(psi_range, res_psi_norm,'linewidth',3.0)
+hold on
+    plot(psi_range, water_s_norm,'linewidth',3.0)
+hold on
+plot(psi_range, fat_s_norm,'linewidth',3.0)
+legend('Res','Water','Fat')
+xlabel('\psi (Hz)')
+ylabel('||R_i||_2 (i = 3)')
+title('Residual (S_{true} - S_{est}) versus \psi')
+set(gca, 'fontsize', 16, 'fontweight', 'bold','linewidth',3.0);
+set(gcf,'color','w');
