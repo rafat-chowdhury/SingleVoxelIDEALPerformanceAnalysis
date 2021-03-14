@@ -91,3 +91,15 @@ ylabel('||R_i||_2 (i = 3)')
 title('Residual (S_{true} - S_{est}) versus \psi')
 set(gca, 'fontsize', 16, 'fontweight', 'bold','linewidth',3.0);
 set(gcf,'color','w');
+
+%% Save data in a singular structure
+% result = {};
+result.simulationdata.water_s_norm = water_s_norm; 
+result.simulationdata.fat_s_norm = fat_s_norm ;
+result.simulationdata.res_psi_norm = res_psi_norm;
+result.params.signalintensity.W = W;
+result.params.signalintensity.F = F;
+result.params.res_frequency.W = df_W;
+result.params.res_frequency.F = df_F;
+result.params.echo_times = TE;
+result.params.original_psi = psi;
